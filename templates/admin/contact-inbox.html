@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hòm thư liên hệ | Nexora Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #1a1412;
+            --sidebar-bg: #241b18;
+            --sidebar-active: #3d2a22;
+            --ink: #fdfaf7;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --muted: #a69288;
+            --card: #2d221e;
+            --border: #3d2d27;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        aside {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .admin-brand {
+            padding: 32px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--ink);
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .nav-group {
+            padding: 0 16px;
+            margin-bottom: 32px;
+        }
+
+        .nav-label {
+            padding: 0 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--sidebar-active);
+            color: var(--ink);
+        }
+
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px;
+            max-width: 1600px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .welcome h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* ─── FILTER BAR ─── */
+        .filter-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .filter-item {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .filter-item.active {
+            color: var(--accent);
+        }
+
+        .filter-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* ─── INBOX LIST ─── */
+        .inbox-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .inbox-row {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 3fr 1fr;
+            padding: 20px 32px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            transition: background 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .inbox-row:last-child {
+            border-bottom: none;
+        }
+
+        .inbox-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .inbox-row.unread {
+            background: rgba(224, 123, 84, 0.03);
+            border-left: 3px solid var(--accent);
+        }
+
+        .sender-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--sidebar-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--teal);
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+        }
+
+        .msg-subject {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .msg-preview {
+            color: var(--muted);
+            font-size: 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 400px;
+        }
+
+        .msg-time {
+            text-align: right;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .service-tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--sidebar-bg);
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--muted);
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        .unread .status-dot {
+            background: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <div class="admin-brand">
+            <div class="brand-dot"></div>Nexora Portal
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Chính</span>
+            <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Quản lý nội dung</span>
+            <a href="services-list.html" class="nav-item"><i class="fa-solid fa-briefcase"></i> Dịch vụ</a>
+            <a href="cms-homepage.html" class="nav-item"><i class="fa-solid fa-window-restore"></i> Frontend CMS</a>
+            <a href="cms-general.html" class="nav-item"><i class="fa-solid fa-sliders"></i> Cấu hình chung</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Tương tác</span>
+            <a href="contact-inbox.html" class="nav-item active"><i class="fa-solid fa-envelope"></i> Hòm thư liên
+                hệ</a>
+            <a href="project-inquiries.html" class="nav-item"><i class="fa-solid fa-file-invoice"></i> Yêu cầu dự án</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Hệ thống</span>
+            <a href="admin-accounts.html" class="nav-item"><i class="fa-solid fa-users-gear"></i> Tài khoản admin</a>
+            <a href="seo-settings.html" class="nav-item"><i class="fa-solid fa-gear"></i> Cài đặt SEO</a>
+            <a href="system-logs.html" class="nav-item"><i class="fa-solid fa-clock-rotate-left"></i> Nhật ký hệ
+                thống</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="top-bar">
+            <div class="welcome">
+                <h1>Hòm thư liên hệ</h1>
+                <p>Theo dõi và phản hồi các yêu cầu từ khách hàng tiềm năng.</p>
+            </div>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn-icon"
+                    style="width: auto; padding: 0 16px; gap: 8px; font-weight: 600; border-radius: 12px; height: 44px; display: flex; align-items: center; background: var(--sidebar-bg); color: var(--ink); border: 1px solid var(--border);">
+                    <i class="fa-solid fa-download"></i> Xuất Excel
+                </button>
+            </div>
+        </div>
+
+        <div class="filter-bar">
+            <div class="filter-item active">Tất cả (24)</div>
+            <div class="filter-item">Chưa đọc (12)</div>
+            <div class="filter-item">Đã phản hồi (8)</div>
+            <div class="filter-item">Lưu trữ</div>
+        </div>
+
+        <div class="inbox-panel">
+            <!-- Row 1 (Unread) -->
+            <a href="contact-view.html" class="inbox-row unread">
+                <div class="sender-info">
+                    <div class="avatar">NV</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem;">Nguyễn Văn An</div>
+                        <div style="font-size: 0.8rem; color: var(--muted);">an.nguyen@gmail.com</div>
+                    </div>
+                </div>
+                <div>
+                    <span class="service-tag">Web Development</span>
+                </div>
+                <div>
+                    <div class="msg-subject"><span class="status-dot"></span>Cần tư vấn thiết kế Web E-commerce</div>
+                    <div class="msg-preview">Xin chào, tôi đại diện cho công ty ABC đang tìm kiếm đối tác thiết kế
+                        website bán hàng...</div>
+                </div>
+                <div class="msg-time">10 phút trước</div>
+            </a>
+
+            <!-- Row 2 (Unread) -->
+            <a href="#" class="inbox-row unread">
+                <div class="sender-info">
+                    <div class="avatar" style="color: var(--accent);">TT</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem;">Trần Thu Thủy</div>
+                        <div style="font-size: 0.8rem; color: var(--muted);">thuy.tran@hotmail.com</div>
+                    </div>
+                </div>
+                <div>
+                    <span class="service-tag">App Development</span>
+                </div>
+                <div>
+                    <div class="msg-subject"><span class="status-dot"></span>Yêu cầu báo giá App đặt lịch</div>
+                    <div class="msg-preview">Tôi có ý tưởng về một ứng dụng đặt lịch hẹn cho spa, cần biết chi phí sơ bộ
+                        và timeline...</div>
+                </div>
+                <div class="msg-time">2 giờ trước</div>
+            </a>
+
+            <!-- Row 3 (Read) -->
+            <a href="#" class="inbox-row">
+                <div class="sender-info">
+                    <div class="avatar" style="color: var(--gold);">LH</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem;">Lê Hoàng</div>
+                        <div style="font-size: 0.8rem; color: var(--muted);">hoang.le@techcorp.vn</div>
+                    </div>
+                </div>
+                <div>
+                    <span class="service-tag">IoT Solutions</span>
+                </div>
+                <div>
+                    <div class="msg-subject"><span class="status-dot"></span>Hỏi về giải pháp Smart Factory</div>
+                    <div class="msg-preview">Chúng tôi đang quan tâm đến việc số hóa nhà máy tại Bình Dương, xin cho
+                        biết quy trình tư vấn...</div>
+                </div>
+                <div class="msg-time">Hôm qua</div>
+            </a>
+
+            <!-- Row 4 (Read) -->
+            <a href="#" class="inbox-row">
+                <div class="sender-info">
+                    <div class="avatar">PM</div>
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.9rem;">Phạm Minh</div>
+                        <div style="font-size: 0.8rem; color: var(--muted);">minhpham@startup.io</div>
+                    </div>
+                </div>
+                <div>
+                    <span class="service-tag">AI Solutions</span>
+                </div>
+                <div>
+                    <div class="msg-subject"><span class="status-dot"></span>Hợp tác tích hợp AI Chatbot</div>
+                    <div class="msg-preview">Nền tảng của chúng tôi cần một hệ thống chatbot thông minh hỗ trợ 24/7, rất
+                        mong được thảo luận...</div>
+                </div>
+                <div class="msg-time">15/02/2026</div>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>

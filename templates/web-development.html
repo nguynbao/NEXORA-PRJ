@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development | Nexora Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ─── TOKENS (Đồng bộ từ style_standard.txt) ─── */
+        :root {
+            --bg: #2d1b14;
+            --ink: #fdfaf7;
+            --warm: #3d2a22;
+            --cream: #2d1b14;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --gold: #d1b894;
+            --muted: #a69288;
+            --card: #382822;
+            --border: #4d3a31;
+        }
+
+        /* ─── RESET ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(45, 27, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 100px;
+            transition: background 0.25s, transform 0.2s !important;
+            box-shadow: 0 4px 20px rgba(224, 123, 84, 0.3);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: #f08c65 !important;
+            transform: scale(1.03);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 180px 60px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .hero-label {
+            background: var(--warm);
+            color: var(--teal);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--ink);
+            max-width: 900px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        /* ─── WEB SOLUTIONS GRID ─── */
+        .solutions-section {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .solution-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .solution-card i {
+            font-size: 2.2rem;
+            color: var(--teal);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .solution-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .solution-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ─── TECHNOLOGY STACK ─── */
+        .tech-section {
+            padding: 100px 60px;
+            background: #241510;
+        }
+
+        .tech-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tech-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tech-box {
+            background: var(--warm);
+            border: 1px solid var(--border);
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tech-box i {
+            color: var(--teal);
+        }
+
+        /* ─── CASE STUDY PREVIEW ─── */
+        .feature-showcase {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .showcase-content h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .showcase-content p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--warm);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .showcase-visual {
+            background: var(--warm);
+            border-radius: 32px;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .showcase-visual::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(224, 123, 84, 0.1) 0%, transparent 70%);
+        }
+
+        /* ─── CALL TO ACTION ─── */
+        .cta-section {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: var(--accent);
+            padding: 80px 40px;
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--bg);
+            padding: 18px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-white:hover {
+            transform: scale(1.05);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 80px 60px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            background: var(--bg);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-top: 20px;
+            max-width: 260px;
+        }
+
+        .footer-col h5 {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 24px;
+            color: var(--ink);
+        }
+
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--teal);
+        }
+
+        .footer-bottom {
+            padding: 32px 60px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .solutions-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feature-showcase {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .feature-list {
+                justify-content: center;
+            }
+
+            .feature-item {
+                justify-content: center;
+            }
+
+            footer {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 18px 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 140px 24px 70px;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solutions-section,
+            .tech-section,
+            .feature-showcase,
+            .cta-section,
+            footer {
+                padding: 60px 24px;
+            }
+
+            .cta-box h2 {
+                font-size: 2rem;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="home.html" class="logo">
+            <div class="logo-dot"></div>
+            Nexora
+        </a>
+        <nav>
+            <a href="home.html#services">Dịch vụ</a>
+            <a href="home.html#process">Quy trình</a>
+            <a href="home.html#testimonials">Khách hàng</a>
+            <a href="home.html#contact" class="nav-cta">Liên hệ dự án →</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ═══════════════ HERO ═══════════════ -->
+        <section class="hero">
+            <div class="hero-label">Dịch vụ chuyên sâu</div>
+            <h1>Thiết kế & Phát triển<br><em>Website chuyên nghiệp</em></h1>
+            <p>Chúng tôi không chỉ viết code. Chúng tôi tạo ra những trải nghiệm số mượt mà, tối ưu hóa tỷ lệ chuyển đổi
+                và giúp thương hiệu của bạn tỏa sáng trên không gian mạng.</p>
+        </section>
+
+        <!-- ═══════════════ SOLUTIONS ═══════════════ -->
+        <section class="solutions-section">
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <i class="fa-solid fa-code"></i>
+                    <h3>Custom Development</h3>
+                    <p>Hệ thống quản trị nội dung (CMS) được thiết kế riêng biệt theo quy trình vận hành của doanh
+                        nghiệp, giúp bạn quản lý dữ liệu dễ dàng và an toàn.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <h3>E-Commerce</h3>
+                    <p>Nền tảng bán hàng trực tuyến mạnh mẽ, tích hợp thanh toán đa kênh, quản lý kho vận thông minh và
+                        tối ưu hóa trải nghiệm mua sắm.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3>High Performance</h3>
+                    <p>Website tốc độ cao, đạt điểm tối ưu trên Google PageSpeed, giúp cải thiện thứ hạng SEO và giữ
+                        chân khách hàng ngay từ giây đầu tiên.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ TECH STACK ═══════════════ -->
+        <section class="tech-section">
+            <div class="tech-inner">
+                <h2>Công nghệ mạnh mẽ</h2>
+                <div class="tech-grid">
+                    <div class="tech-box"><i class="fa-brands fa-react"></i> React.js</div>
+                    <div class="tech-box"><i class="fa-brands fa-node-js"></i> Node.js</div>
+                    <div class="tech-box"><i class="fa-solid fa-leaf"></i> MongoDB</div>
+                    <div class="tech-box"><i class="fa-brands fa-python"></i> Python / Django</div>
+                    <div class="tech-box"><i class="fa-brands fa-aws"></i> AWS Cloud</div>
+                    <div class="tech-box"><i class="fa-brands fa-docker"></i> Docker</div>
+                    <div class="tech-box"><i class="fa-solid fa-server"></i> Nginx</div>
+                    <div class="tech-box"><i class="fa-solid fa-shield-halved"></i> SSL / Security</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ FEATURE SHOWCASE ═══════════════ -->
+        <section class="feature-showcase">
+            <div class="showcase-content">
+                <h2>Trải nghiệm mượt mà trên mọi thiết bị</h2>
+                <p>Với triết lý Design-First, mỗi pixel đều được chăm chút kỹ lưỡng để đảm bảo tính thẩm mỹ đồng bộ trên
+                    cả Desktop, Tablet và Mobile.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <div class="feature-text">Giao diện Responsive hoàn hảo</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div class="feature-text">Tối ưu hóa SEO On-page chuẩn xác</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+                        <div class="feature-text">UI/UX hướng tới người dùng</div>
+                    </div>
+                </div>
+            </div>
+            <div class="showcase-visual">
+                <!-- Visual element or abstract shape -->
+            </div>
+        </section>
+
+        <!-- ═══════════════ CALL TO ACTION ═══════════════ -->
+        <section class="cta-section">
+            <div class="cta-box">
+                <h2>Sẵn sàng bứt phá doanh số?</h2>
+                <p>Hãy để Nexora đồng hành cùng bạn xây dựng một nền tảng số bền vững và hiệu quả nhất.</p>
+                <a href="home.html#contact" class="btn-white">Bắt đầu ngay hôm nay</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <a href="home.html" class="logo">
+                <div class="logo-dot"></div>
+                Nexora
+            </a>
+            <p>Đối tác công nghệ đáng tin cậy cho doanh nghiệp Việt muốn bứt phá trên thị trường số.</p>
+        </div>
+        <div class="footer-col">
+            <h5>Dịch vụ</h5>
+            <a href="#">Web Development</a>
+            <a href="#">App Development</a>
+            <a href="#">IoT Solutions</a>
+            <a href="#">AI Solutions</a>
+        </div>
+        <div class="footer-col">
+            <h5>Công ty</h5>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Blog</a>
+            <a href="#">Tuyển dụng</a>
+        </div>
+        <div class="footer-col">
+            <h5>Liên hệ</h5>
+            <a href="mailto:hello@nexora.vn">hello@nexora.vn</a>
+            <a href="tel:+84901234567">090 123 4567</a>
+            <a href="#">LinkedIn &nbsp;·&nbsp; Facebook</a>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <span>© 2026 Nexora Technology. Bảo lưu mọi quyền.</span>
+        <span>Chính sách bảo mật &nbsp;·&nbsp; Điều khoản dịch vụ</span>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Admin | Nexora Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #1a1412;
+            --sidebar-bg: #241b18;
+            --sidebar-active: #3d2a22;
+            --ink: #fdfaf7;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --muted: #a69288;
+            --card: #2d221e;
+            --border: #3d2d27;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        aside {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .admin-brand {
+            padding: 32px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--ink);
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .nav-group {
+            padding: 0 16px;
+            margin-bottom: 32px;
+        }
+
+        .nav-label {
+            padding: 0 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--sidebar-active);
+            color: var(--ink);
+        }
+
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .welcome h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .role-badge {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(91, 164, 160, 0.1);
+            color: var(--teal);
+        }
+
+        .btn-icon-s {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-icon-s:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <div class="admin-brand">
+            <div class="brand-dot"></div>Nexora Portal
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Chính</span>
+            <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Quản lý nội dung</span>
+            <a href="services-list.html" class="nav-item"><i class="fa-solid fa-briefcase"></i> Dịch vụ</a>
+            <a href="cms-homepage.html" class="nav-item"><i class="fa-solid fa-window-restore"></i> Frontend CMS</a>
+            <a href="cms-general.html" class="nav-item"><i class="fa-solid fa-sliders"></i> Cấu hình chung</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Tương tác</span>
+            <a href="contact-inbox.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Hòm thư liên hệ</a>
+            <a href="project-inquiries.html" class="nav-item"><i class="fa-solid fa-file-invoice"></i> Yêu cầu dự án</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Hệ thống</span>
+            <a href="admin-accounts.html" class="nav-item active"><i class="fa-solid fa-users-gear"></i> Tài khoản
+                admin</a>
+            <a href="seo-settings.html" class="nav-item"><i class="fa-solid fa-gear"></i> Cài đặt SEO</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="top-bar">
+            <div class="welcome">
+                <h1>Tài khoản Quản trị</h1>
+                <p>Danh sách người dùng có quyền truy cập vào bảng điều khiển.</p>
+            </div>
+            <a href="#" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Thêm Admin</a>
+        </div>
+
+        <div class="panel">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thành viên</th>
+                        <th>Vai trò</th>
+                        <th>Trạng thái</th>
+                        <th>Đăng nhập cuối</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <div class="avatar">BN</div>
+                                <div>
+                                    <strong style="display: block;">Admin</strong>
+                                    <span style="font-size: 0.8rem; color: var(--muted);">admin@nexora.vn</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="role-badge">Super Admin</span></td>
+                        <td><span style="color: var(--teal); font-weight: 700;">● Trực tuyến</span></td>
+                        <td>Vừa xong</td>
+                        <td>
+                            <div style="display: flex; gap: 8px;">
+                                <a href="#" class="btn-icon-s"><i class="fa-solid fa-user-pen"></i></a>
+                                <a href="#" class="btn-icon-s"><i class="fa-solid fa-shield-halved"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <div class="avatar" style="color: var(--teal);">TA</div>
+                                <div>
+                                    <strong style="display: block;">Admin 1</strong>
+                                    <span style="font-size: 0.8rem; color: var(--muted);">admin1@nexora.vn</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="role-badge">Content Editor</span></td>
+                        <td><span style="color: var(--muted); font-weight: 700;">● Ngoại tuyến</span></td>
+                        <td>2 ngày trước</td>
+                        <td>
+                            <div style="display: flex; gap: 8px;">
+                                <a href="#" class="btn-icon-s"><i class="fa-solid fa-user-pen"></i></a>
+                                <a href="#" class="btn-icon-s"><i class="fa-solid fa-shield-halved"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+
+</html>

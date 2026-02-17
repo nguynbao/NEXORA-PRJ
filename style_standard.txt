@@ -1,0 +1,42 @@
+THÔNG SỐ STYLE CHUẨN ĐỒNG BỘ (NEXORA BRANDER)
+------------------------------------------
+PHONG CÁCH: TERRACOTTA DUST (ĐẤT NUNG & XANH TEAL)
+CẢM GIÁC: ẤM ÁP, CHIỀU SÂU, ĐÔNG NAM Á MODERNIZE
+
+1. HỆ TÓA ĐỘ MÀU SẮC (CORE TOKENS)
+   - Nền chính (Background): #2d1b14 (Nâu đất tối)
+   - Accent (Điểm nhấn): #e07b54 (Đất nung - Terracotta)
+   - Secondary (Phụ): #5ba4a0 (Xanh Teal - Việt Spirit)
+   - Văn bản (Ink): #fdfaf7 (Kem nhạt - High Contrast)
+   - Muted (Phụ trợ): #a69288 (Xám đất)
+   - Card/Surface: #382822 (Nâu trầm)
+   - Border: #4d3a31 (Viền tinh tế)
+
+2. HỆ THỐNG PHÔNG CHỮ (TYPOGRAPHY)
+   - Font Tiêu đề (Heading): 'Fraunces', serif (Nét cổ điển, organic)
+   - Font Nội dung (Body): 'Plus Jakarta Sans', sans-serif (Hiện đại, sạch sẽ)
+   - H1 (Hero): 4.5rem - 5rem (Mobile: 2.8rem), Line-height: 1.1, Letter-spacing: -2px
+   - H2 (Section): 2.5rem - 3rem, Letter-spacing: -1px
+   - Body text: 1rem (16px), Line-height: 1.7 - 1.8
+
+3. THÀNH PHẦN GIAO DIỆN (COMPONENTS)
+   - Nút (Button Primary): 
+     + Background: #e07b54
+     + Border-radius: 100px (Pill style)
+     + Shadow: 0 4px 20px rgba(224, 123, 84, 0.3)
+   - Thẻ (Cards):
+     + Background: #382822
+     + Border: 1px solid #4d3a31
+     + Radius: 24px - 28px
+     + Hover: TranslateY(-6px), Shadow mạnh trên nền tối
+   - Badge (Nhãn hướng dẫn):
+     + Kích thước nhỏ, chữ in hoa (Uppercase)
+     + Font-weight: 700, Letter-spacing: 1.5px
+     + Background: #3d2a22 (Surface nhẹ)
+
+4. TRIẾT LÝ THIẾT KẾ (DESIGN PHILOSOPHY)
+   - Không gradient (Sử dụng Flat color kết hợp Layering).
+   - Không Emoji trong mã nguồn và UI (Sử dụng Icon Font-Awesome mượt mà).
+   - Tối giản Comment: Chỉ giải thích các khối Logic lớn hoặc Intent cao cấp.
+   - Ưu tiên trải nghiệm mượt mà: Sử dụng hiệu ứng Reveal và Micro-interactions (Tilt card, Hover glow).
+   - Cân bằng văn hóa: Kết hợp nét mộc mạc của màu đất với sự sắc sảo của công nghệ hiện đại.

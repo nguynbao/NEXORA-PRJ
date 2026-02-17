@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Trang chủ | Nexora Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #1a1412;
+            --sidebar-bg: #241b18;
+            --sidebar-active: #3d2a22;
+            --ink: #fdfaf7;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --muted: #a69288;
+            --card: #2d221e;
+            --border: #3d2d27;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        aside {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .admin-brand {
+            padding: 32px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--ink);
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .nav-group {
+            padding: 0 16px;
+            margin-bottom: 32px;
+        }
+
+        .nav-label {
+            padding: 0 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--sidebar-active);
+            color: var(--ink);
+        }
+
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+        }
+
+        .panel-title i {
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--teal);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .preview-img {
+            width: 100%;
+            aspect-ratio: 21/9;
+            background: var(--bg);
+            border-radius: 16px;
+            border: 2px dashed var(--border);
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .preview-img:hover {
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <div class="admin-brand">
+            <div class="brand-dot"></div>Nexora Portal
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Chính</span>
+            <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Quản lý nội dung</span>
+            <a href="services-list.html" class="nav-item"><i class="fa-solid fa-briefcase"></i> Dịch vụ</a>
+            <a href="cms-homepage.html" class="nav-item active"><i class="fa-solid fa-window-restore"></i> Frontend
+                CMS</a>
+            <a href="cms-general.html" class="nav-item"><i class="fa-solid fa-sliders"></i> Cấu hình chung</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Tương tác</span>
+            <a href="contact-inbox.html" class="nav-item"><i class="fa-solid fa-envelope"></i> Hòm thư liên hệ</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-file-invoice"></i> Yêu cầu dự án</a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">Hệ thống</span>
+            <a href="#" class="nav-item"><i class="fa-solid fa-users-gear"></i> Tài khoản admin</a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> Cài đặt SEO</a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="top-bar">
+            <div class="welcome">
+                <h1>Cấu hình Trang chủ</h1>
+                <p>Điều chỉnh nội dung Banner chính và các tiêu đề quan trọng.</p>
+            </div>
+            <button class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Cập nhật giao diện</button>
+        </div>
+
+        <!-- Section: Hero/Banner -->
+        <div class="panel">
+            <div class="panel-title"><i class="fa-solid fa-rocket"></i> Hero Section (Banner chính)</div>
+            <div class="form-group">
+                <label>Tiêu đề lớn (Headline)</label>
+                <input type="text" value="Kiến tạo Kỷ nguyên Công nghệ Số">
+            </div>
+            <div class="form-group">
+                <label>Tiêu đề phụ (Sub-headline)</label>
+                <textarea>Nexora Technology - Đối tác chiến lược trong hành trình chuyển đổi số của doanh nghiệp bạn. Chúng tôi cung cấp các giải pháp đột phá từ Web, App đến AI & IoT.</textarea>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Nút CTA 1 (Tên)</label>
+                    <input type="text" value="Bắt đầu dự án">
+                </div>
+                <div class="form-group">
+                    <label>Nút CTA 1 (Liên kết)</label>
+                    <input type="text" value="/contact">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Hình ảnh nển / Video minh họa</label>
+                <div class="preview-img">
+                    <i class="fa-solid fa-image" style="font-size: 2rem; margin-bottom: 12px;"></i>
+                    <span>Tải lên hình ảnh banner chuyên nghiệp</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Brand Statistics -->
+        <div class="panel">
+            <div class="panel-title"><i class="fa-solid fa-chart-line"></i> Chỉ số nổi bật (Statistics)</div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Chỉ số 1 (Ví dụ: 50+)</label>
+                    <input type="text" value="500+">
+                </div>
+                <div class="form-group">
+                    <label>Mô tả chỉ số 1</label>
+                    <input type="text" value="Dự án thành công">
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Chỉ số 2 (Ví dụ: 10+)</label>
+                    <input type="text" value="100+">
+                </div>
+                <div class="form-group">
+                    <label>Mô tả chỉ số 2</label>
+                    <input type="text" value="Chuyên gia CNTT">
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Welcome Text -->
+        <div class="panel">
+            <div class="panel-title"><i class="fa-solid fa-handshake"></i> Lời chào mừng (Intro Section)</div>
+            <div class="form-group">
+                <label>Tiêu đề mục</label>
+                <input type="text" value="Chào mừng đến với Nexora">
+            </div>
+            <div class="form-group">
+                <label>Nội dung chi tiết</label>
+                <textarea
+                    style="min-height: 120px;">Chúng tôi tin rằng công nghệ là chìa khóa để mở ra những tiềm năng vô hạn của con người và doanh nghiệp. Với Nexora, mỗi dự án là một kiệt tác số.</textarea>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

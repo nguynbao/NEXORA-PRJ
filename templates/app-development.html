@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Development | Nexora Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ─── TOKENS ─── */
+        :root {
+            --bg: #2d1b14;
+            --ink: #fdfaf7;
+            --warm: #3d2a22;
+            --cream: #2d1b14;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --gold: #d1b894;
+            --muted: #a69288;
+            --card: #382822;
+            --border: #4d3a31;
+        }
+
+        /* ─── RESET ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(45, 27, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 100px;
+            transition: background 0.25s, transform 0.2s !important;
+            box-shadow: 0 4px 20px rgba(224, 123, 84, 0.3);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: #f08c65 !important;
+            transform: scale(1.03);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 180px 24px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .hero-label {
+            background: var(--warm);
+            color: var(--teal);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--ink);
+            max-width: 900px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        /* ─── APP TYPES ─── */
+        .app-types-section {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .type-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+            padding: 48px;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .type-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .type-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--warm);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .type-content h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .type-content p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ─── PLATFORMS / TECH ─── */
+        .platforms-section {
+            padding: 100px 60px;
+            background: #241510;
+        }
+
+        .platforms-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .platforms-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .platform-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 32px 24px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .platform-box i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .platform-box span {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .platform-box p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        /* ─── MOBILE UI SHOWCASE ─── */
+        .ui-showcase {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .ui-visual {
+            background: var(--warm);
+            border-radius: 40px;
+            height: 600px;
+            position: relative;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 260px;
+            height: 520px;
+            background: #1a1614;
+            border: 8px solid #332a26;
+            border-radius: 40px;
+            position: relative;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 25px;
+            background: #332a26;
+            border-radius: 100px;
+        }
+
+        .showcase-text h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .showcase-text p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .feature-bullet {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .bullet-point {
+            width: 28px;
+            height: 28px;
+            background: var(--teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .bullet-content h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-size: 1.1rem;
+        }
+
+        .bullet-content p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: var(--teal);
+            padding: 80px 40px;
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cta-box h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--teal);
+            padding: 18px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn-white:hover {
+            transform: scale(1.05);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 80px 60px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            background: var(--bg);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-top: 20px;
+            max-width: 260px;
+        }
+
+        .footer-col h5 {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 24px;
+            color: var(--ink);
+        }
+
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--teal);
+        }
+
+        .footer-bottom {
+            padding: 32px 60px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .types-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ui-showcase {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+
+            .ui-visual {
+                order: -1;
+            }
+
+            .feature-bullet {
+                text-align: left;
+            }
+
+            footer {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 18px 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 140px 24px 70px;
+            }
+
+            .type-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 32px 24px;
+            }
+
+            .platforms-section,
+            .ui-showcase,
+            .cta-section,
+            footer {
+                padding: 60px 24px;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="home.html" class="logo">
+            <div class="logo-dot"></div>
+            Nexora
+        </a>
+        <nav>
+            <a href="home.html#services">Dịch vụ</a>
+            <a href="home.html#process">Quy trình</a>
+            <a href="home.html#testimonials">Khách hàng</a>
+            <a href="home.html#contact" class="nav-cta">Liên hệ dự án →</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ═══════════════ HERO ═══════════════ -->
+        <section class="hero">
+            <div class="hero-label">Giải pháp di động</div>
+            <h1>Phát triển <em>Ứng dụng</em><br>đẳng cấp thế giới</h1>
+            <p>Chúng tôi kiến tạo các ứng dụng di động mượt mà, trực quan và hiệu năng cao, giúp doanh nghiệp của bạn
+                hiện diện mạnh mẽ trên nền tảng quan trọng nhất hiện nay.</p>
+        </section>
+
+        <!-- ═══════════════ APP TYPES ═══════════════ -->
+        <section class="app-types-section">
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-icon"><i class="fa-solid fa-mobile"></i></div>
+                    <div class="type-content">
+                        <h3>Native Apps</h3>
+                        <p>Tận dụng tối đa sức mạnh của iOS và Android với hiệu năng đỉnh cao, khả năng truy cập phần
+                            cứng sâu và trải nghiệm người dùng đặc trưng nhất.</p>
+                    </div>
+                </div>
+                <div class="type-card">
+                    <div class="type-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="type-content">
+                        <h3>Cross-Platform</h3>
+                        <p>Tiết kiệm thời gian và ngân sách với nền tảng đa mục tiêu (Flutter/React Native) mà vẫn đảm
+                            bảo độ mượt mà và tính nhất quán tuyệt đối.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ TECHNOLOGY ═══════════════ -->
+        <section class="platforms-section">
+            <div class="platforms-inner">
+                <h2>Công nghệ & Nền tảng</h2>
+                <div class="platform-grid">
+                    <div class="platform-box">
+                        <i class="fa-brands fa-apple"></i>
+                        <span>iOS / Swift</span>
+                        <p>Ứng dụng hiệu năng cao</p>
+                    </div>
+                    <div class="platform-box">
+                        <i class="fa-brands fa-android"></i>
+                        <span>Android / Kotlin</span>
+                        <p>Phổ biến & tối ưu</p>
+                    </div>
+                    <div class="platform-box">
+                        <i class="fa-solid fa-feather"></i>
+                        <span>Flutter</span>
+                        <p>Phát triển nhanh chóng</p>
+                    </div>
+                    <div class="platform-box">
+                        <i class="fa-brands fa-react"></i>
+                        <span>React Native</span>
+                        <p>Linh hoạt & ổn định</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ UI/UX SHOWCASE ═══════════════ -->
+        <section class="ui-showcase">
+            <div class="ui-visual">
+                <div class="phone-mockup">
+                    <!-- Abstract app UI could go here -->
+                </div>
+            </div>
+            <div class="showcase-text">
+                <h2>Trải nghiệm "Mobile-First" ưu việt</h2>
+                <p>Mỗi ứng dụng chúng tôi tạo ra đều phải trải qua quá trình nghiên cứu hành vi người dùng nghiêm ngặt
+                    để đảm bảo sự tiện dụng tối đa.</p>
+
+                <div class="feature-bullet">
+                    <div class="bullet-point"><i class="fa-solid fa-check"></i></div>
+                    <div class="bullet-content">
+                        <h4>Giao diện thích ứng</h4>
+                        <p>Tương thích hoàn hảo với mọi kích thước màn hình và tỷ lệ thiết bị hiện nay.</p>
+                    </div>
+                </div>
+
+                <div class="feature-bullet">
+                    <div class="bullet-point"><i class="fa-solid fa-check"></i></div>
+                    <div class="bullet-content">
+                        <h4>Tốc độ phản hồi tức thì</h4>
+                        <p>Tối ưu hóa mã nguồn để đảm bảo ứng dụng khởi động và phản hồi trong tích tắc.</p>
+                    </div>
+                </div>
+
+                <div class="feature-bullet">
+                    <div class="bullet-point"><i class="fa-solid fa-check"></i></div>
+                    <div class="bullet-content">
+                        <h4>Bảo mật đa tầng</h4>
+                        <p>Tích hợp các tiêu chuẩn bảo mật hiện đại nhất để bảo vệ dữ liệu khách hàng.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ CTA ═══════════════ -->
+        <section class="cta-section">
+            <div class="cta-box">
+                <h2>Cùng hiện thực hóa ý tưởng của bạn</h2>
+                <p>Dù là Start-up hay doanh nghiệp lớn, chúng tôi đều có giải pháp phù hợp nhất.</p>
+                <a href="home.html#contact" class="btn-white">Nhận báo giá dự án</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <a href="home.html" class="logo">
+                <div class="logo-dot"></div>
+                Nexora
+            </a>
+            <p>Đối tác công nghệ đáng tin cậy cho doanh nghiệp Việt muốn bứt phá trên thị trường số.</p>
+        </div>
+        <div class="footer-col">
+            <h5>Dịch vụ</h5>
+            <a href="web-development.html">Web Development</a>
+            <a href="#">App Development</a>
+            <a href="#">IoT Solutions</a>
+            <a href="#">AI Solutions</a>
+        </div>
+        <div class="footer-col">
+            <h5>Công ty</h5>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Blog</a>
+            <a href="#">Tuyển dụng</a>
+        </div>
+        <div class="footer-col">
+            <h5>Liên hệ</h5>
+            <a href="mailto:hello@nexora.vn">hello@nexora.vn</a>
+            <a href="tel:+84901234567">090 123 4567</a>
+            <a href="#">LinkedIn &nbsp;·&nbsp; Facebook</a>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <span>© 2026 Nexora Technology. Bảo lưu mọi quyền.</span>
+        <span>Chính sách bảo mật &nbsp;·&nbsp; Điều khoản dịch vụ</span>
+    </div>
+
+</body>
+
+</html>

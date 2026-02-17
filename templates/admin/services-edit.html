@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa dịch vụ | Nexora Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ─── TOKENS ─── */
+        :root {
+            --bg: #1a1412;
+            --sidebar-bg: #241b18;
+            --sidebar-active: #3d2a22;
+            --ink: #fdfaf7;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --muted: #a69288;
+            --card: #2d221e;
+            --border: #3d2d27;
+            --sidebar-width: 280px;
+        }
+
+        /* ─── RESET ─── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ─── SIDEBAR ─── */
+        aside {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .admin-brand {
+            padding: 32px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--ink);
+        }
+
+        .brand-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .nav-group {
+            padding: 0 16px;
+            margin-bottom: 32px;
+        }
+
+        .nav-label {
+            padding: 0 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--sidebar-active);
+            color: var(--ink);
+        }
+
+        /* ─── MAIN CONTENT ─── */
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .actions-top {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary {
+            background: var(--sidebar-bg);
+            color: var(--ink);
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* ─── FORM ─── */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: block;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--teal);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .switch-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .switch-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Custom Checkbox/Switch Style Placeholder */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--teal);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(20px);
+        }
+
+        .seo-preview {
+            background: #fff;
+            color: #1a0dab;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .seo-preview .url {
+            color: #006621;
+            font-size: 0.8rem;
+        }
+
+        .seo-preview .desc {
+            color: #545454;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside>
+        <div class="admin-brand">
+            <div class="brand-dot"></div>
+            Nexora Portal
+        </div>
+
+        <div class="nav-group">
+            <span class="nav-label">Chính</span>
+            <a href="dashboard.html" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                Dashboard
+            </a>
+        </div>
+
+        <div class="nav-group">
+            <span class="nav-label">Quản lý nội dung</span>
+            <a href="services-list.html" class="nav-item active">
+                <i class="fa-solid fa-briefcase"></i>
+                Dịch vụ
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-window-restore"></i>
+                Frontend CMS
+            </a>
+        </div>
+
+        <div class="nav-group">
+            <span class="nav-label">Tương tác</span>
+            <a href="contact-inbox.html" class="nav-item">
+                <i class="fa-solid fa-envelope"></i>
+                Hòm thư liên hệ
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-file-invoice"></i>
+                Yêu cầu dự án
+            </a>
+        </div>
+
+        <div class="nav-group">
+            <span class="nav-label">Hệ thống</span>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-users-gear"></i>
+                Tài khoản admin
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-gear"></i>
+                Cài đặt SEO
+            </a>
+        </div>
+    </aside>
+
+    <main>
+        <div class="top-bar">
+            <a href="services-list.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Quay lại danh sách
+            </a>
+            <div class="actions-top">
+                <button class="btn btn-secondary">Xem trước trang</button>
+                <button class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+
+        <div class="form-grid">
+            <!-- Cột chính: Nội dung -->
+            <div class="main-form">
+                <div class="panel">
+                    <span class="panel-title">Thông tin cơ bản</span>
+                    <div class="form-group">
+                        <label>Tên dịch vụ</label>
+                        <input type="text" value="Web Development" placeholder="Nhập tên dịch vụ...">
+                    </div>
+                    <div class="form-group">
+                        <label>Đường dẫn (Slug)</label>
+                        <input type="text" value="web-development" placeholder="web-development">
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả ngắn</label>
+                        <textarea
+                            placeholder="Hiển thị ở trang danh sách...">Xây dựng website chuyên nghiệp, tốc độ cao, tối ưu SEO và trải nghiệm người dùng.</textarea>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <span class="panel-title">Nội dung chi tiết</span>
+                    <div class="form-group">
+                        <label>Tiêu đề chi tiết (Heading Detail)</label>
+                        <input type="text" value="Thiết kế & Phát triển Website chuyên nghiệp">
+                    </div>
+                    <div class="form-group">
+                        <label>Nội dung giới thiệu chi tiết</label>
+                        <textarea
+                            style="min-height: 200px;">Chúng tôi không chỉ viết code. Chúng tôi tạo ra những trải nghiệm số mượt mà, tối ưu hóa tỷ lệ chuyển đổi và giúp thương hiệu của bạn tỏa sáng trên không gian mạng.</textarea>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <span class="panel-title">Tối ưu SEO</span>
+                    <div class="form-group">
+                        <label>Meta Title</label>
+                        <input type="text" value="Web Development | Nexora Technology">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Description</label>
+                        <textarea
+                            placeholder="Nhập mô tả chuẩn SEO...">Dịch vụ thiết kế website chuyên nghiệp tại Nexora. Tối ưu tốc độ, SEO và trải nghiệm người dùng cao cấp.</textarea>
+                    </div>
+                    <label>Xem trước kết quả tìm kiếm</label>
+                    <div class="seo-preview">
+                        <div style="font-size: 1.1rem; margin-bottom: 2px;">Web Development | Nexora Technology</div>
+                        <div class="url">https://nexora.vn/services/web-development</div>
+                        <div class="desc">Dịch vụ thiết kế website chuyên nghiệp tại Nexora. Tối ưu tốc độ, SEO và trải
+                            nghiệm người dùng cao cấp...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột phụ: Cấu hình -->
+            <div class="side-form">
+                <div class="panel">
+                    <span class="panel-title">Cấu hình hiển thị</span>
+                    <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select>
+                            <option selected>Công khai (Public)</option>
+                            <option>Bản nháp (Draft)</option>
+                            <option>Lưu trữ (Archived)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="switch-group">
+                            <span class="switch-label">Dịch vụ nổi bật</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Icon (FontAwesome Class)</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" value="fa-globe" placeholder="fa-globe">
+                            <div
+                                style="width: 48px; background: var(--bg); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border);">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <span class="panel-title">Hình ảnh đại diện</span>
+                    <div
+                        style="width: 100%; aspect-ratio: 16/9; background: var(--bg); border: 2px dashed var(--border); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.2s;">
+                        <i class="fa-solid fa-cloud-arrow-up"
+                            style="font-size: 1.5rem; color: var(--muted); margin-bottom: 12px;"></i>
+                        <span style="font-size: 0.8rem; color: var(--muted);">Tải lên hình ảnh</span>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--muted); margin-top: 12px; text-align: center;">Kích thước
+                        đề xuất: 1200x630px</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

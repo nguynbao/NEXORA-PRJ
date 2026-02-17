@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về chúng tôi | Nexora Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #2d1b14;
+            --ink: #fdfaf7;
+            --warm: #3d2a22;
+            --cream: #2d1b14;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --gold: #d1b894;
+            --muted: #a69288;
+            --card: #382822;
+            --border: #4d3a31;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(45, 27, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 100px;
+            box-shadow: 0 4px 20px rgba(224, 123, 84, 0.3);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .hero {
+            padding: 180px 24px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-label {
+            background: var(--warm);
+            color: var(--teal);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 32px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .about-visual {
+            background: var(--warm);
+            border-radius: 40px;
+            height: 550px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .about-text h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .stat-item h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-item span {
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .values-section {
+            padding: 120px 60px;
+            background: #241510;
+        }
+
+        .values-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .values-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.8rem;
+            margin-bottom: 80px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .value-card {
+            text-align: left;
+            padding: 40px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 32px;
+        }
+
+        .value-card i {
+            font-size: 2rem;
+            color: var(--teal);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .value-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: var(--accent);
+            padding: 80px 40px;
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cta-box h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.8rem;
+            color: #fff;
+            margin-bottom: 24px;
+        }
+
+        .btn-white {
+            background: #fff;
+            color: var(--accent);
+            padding: 18px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn-white:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            padding: 80px 60px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-top: 20px;
+            max-width: 260px;
+        }
+
+        .footer-col h5 {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 24px;
+            color: var(--ink);
+        }
+
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--teal);
+        }
+
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+
+            .about-visual {
+                order: -1;
+            }
+
+            .stats-row {
+                justify-content: center;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 18px 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .about-grid,
+            .values-section,
+            .cta-section,
+            footer {
+                padding: 60px 24px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="home.html" class="logo">
+            <div class="logo-dot"></div>
+            Nexora
+        </a>
+        <nav>
+            <a href="home.html">Trang chủ</a>
+            <a href="about-us.html" class="active">Về chúng tôi</a>
+            <a href="home.html#services">Dịch vụ</a>
+            <a href="contact.html" class="nav-cta">Bắt đầu dự án</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-label">Nexora Brander</div>
+            <h1>Kiến tạo giá trị thực<br>cho <em>kỷ nguyên số</em></h1>
+            <p>Chúng tôi là đội ngũ chuyên gia công nghệ tâm huyết, tập trung vào việc mang lại những giải pháp sáng tạo
+                và bền vững cho doanh nghiệp Việt Nam trên bản đồ toàn cầu.</p>
+        </section>
+
+        <section class="about-grid">
+            <div class="about-visual">
+                <!-- Our Story Visual -->
+            </div>
+            <div class="about-text">
+                <h2>Hành trình của niềm tin</h2>
+                <p>Khởi nguồn từ khao khát nâng tầm công nghệ Việt, Nexora bắt đầu với một nhóm kỹ sư trẻ đầy hoài bão.
+                    Chúng tôi tin rằng công nghệ không chỉ là những dòng code khô khan, mà là công cụ để giải quyết các
+                    vấn đề thực tiễn của xã hội.</p>
+                <p>Sau nhiều năm phát triển, chúng tôi tự hào trở thành đối tác chiến lược của nhiều doanh nghiệp đầu
+                    ngành, đồng hành cùng họ trong hành trình chuyển đổi số toàn diện.</p>
+
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <h4>150+</h4>
+                        <span>Dự án thành công</span>
+                    </div>
+                    <div class="stat-item">
+                        <h4>50+</h4>
+                        <span>Chuyên gia tâm huyết</span>
+                    </div>
+                    <div class="stat-item">
+                        <h4>98%</h4>
+                        <span>Khách hàng hài lòng</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="values-inner">
+                <h2>Giá trị cốt lõi</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <h3>Sáng tạo thực tiễn</h3>
+                        <p>Luôn tìm kiếm những góc nhìn mới nhưng phải đảm bảo khả năng ứng dụng hiệu quả vào thực tế
+                            doanh nghiệp.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>Chất lượng bền vững</h3>
+                        <p>Mỗi sản phẩm ra đời đều đạt tiêu chuẩn cao nhất về kỹ thuật, bảo mật và khả năng vận hành lâu
+                            dài.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fa-solid fa-handshake"></i>
+                        <h3>Tâm thế đồng hành</h3>
+                        <p>Chúng tôi không chỉ là nhà thầu, mà là những người cộng sự thấu hiểu và cùng bạn chinh phục
+                            mục tiêu.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-box">
+                <h2>Bạn đã sẵn sàng cùng Nexora bứt phá?</h2>
+                <a href="contact.html" class="btn-white">Liên hệ ngay hôm nay</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <a href="home.html" class="logo">
+                <div class="logo-dot"></div>
+                Nexora
+            </a>
+            <p>Đối tác công nghệ đáng tin cậy cho doanh nghiệp Việt muốn bứt phá trên thị trường số.</p>
+        </div>
+        <div class="footer-col">
+            <h5>Dịch vụ</h5>
+            <a href="web-development.html">Web Development</a>
+            <a href="app-development.html">App Development</a>
+            <a href="iot-solutions.html">IoT Solutions</a>
+            <a href="ai-solutions.html">AI Solutions</a>
+        </div>
+        <div class="footer-col">
+            <h5>Công ty</h5>
+            <a href="about-us.html">Về chúng tôi</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+            <h5>Liên hệ</h5>
+            <a href="mailto:hello@nexora.vn">hello@nexora.vn</a>
+            <a href="tel:+84901234567">090 123 4567</a>
+        </div>
+    </footer>
+</body>
+
+</html>

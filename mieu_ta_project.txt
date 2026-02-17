@@ -1,0 +1,43 @@
+TÀI LIỆU YÊU CẦU DỰ ÁN (REQUIREMENT DOCUMENT)
+1. Tổng quan dự án
+Dự án nhằm xây dựng một website giới thiệu năng lực của công ty trong các lĩnh vực phát triển phần mềm và công nghệ. Website đóng vai trò như một trang giới thiệu (showcase), giúp khách hàng và đối tác hiểu rõ các dịch vụ mà công ty có thể cung cấp.
+2. Mục tiêu dự án
+- Giới thiệu công ty và các lĩnh vực hoạt động.
+- Tạo hình ảnh chuyên nghiệp và đáng tin cậy cho công ty.
+- Cung cấp thông tin liên hệ để khách hàng dễ dàng kết nối.
+- Xây dựng hệ thống Backend API để quản lý nội dung một cách linh hoạt.
+3. Phạm vi dự án
+Dự án bao gồm hai phần chính:
+- Frontend (FE): Website giao diện người dùng.
+- Backend (BE): Hệ thống API quản lý dữ liệu.
+4. Chức năng Frontend (FE)
+4.1 Trang chủ
+- Header: Logo công ty, tên công ty.
+- Navbar: Điều hướng đến các mục chính của website.
+- Body: Hiển thị thông tin giới thiệu tổng quan về công ty và các dịch vụ.
+
+4.2 Các mục dịch vụ
+- Web Development: Giới thiệu khả năng làm website.
+- App Development: Giới thiệu phát triển ứng dụng di động.
+- IoT: Giới thiệu các giải pháp Internet of Things.
+- Data Mining: Giới thiệu khả năng phân tích và khai thác dữ liệu.
+- Game Development: Giới thiệu phát triển game.
+- AI: Giới thiệu các giải pháp trí tuệ nhân tạo.
+
+4.3 Trang liên hệ
+- Hiển thị thông tin liên hệ của công ty.
+- Form liên hệ để người dùng gửi yêu cầu hoặc câu hỏi.
+5. Chức năng Backend (BE)
+- Xây dựng hệ thống CRUD API cho các mục dịch vụ.
+- API quản lý nội dung hiển thị trên website (thêm, sửa, xóa, xem).
+- API quản lý thông tin liên hệ.
+- Đảm bảo khả năng mở rộng và dễ bảo trì.
+6. Đối tượng sử dụng (Tác nhân)
+- Người dùng/Khách hàng: Xem thông tin giới thiệu công ty và các dịch vụ.
+- Quản trị viên: Quản lý nội dung thông qua Backend API.
+7. Công nghệ dự kiến
+- Frontend: Web (HTML, CSS, JavaScript, Framework tùy chọn).
+- Backend: RESTful API.
+- Cơ sở dữ liệu: Tùy chọn (MySQL, PostgreSQL, MongoDB...).
+8. Ghi chú
+Website mang tính chất giới thiệu, không tập trung vào chức năng thương mại hay giao dịch. Mục tiêu chính là thể hiện năng lực và lĩnh vực hoạt động của công ty.

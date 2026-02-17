@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Solutions | Nexora Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #2d1b14;
+            --ink: #fdfaf7;
+            --warm: #3d2a22;
+            --cream: #2d1b14;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --gold: #d1b894;
+            --muted: #a69288;
+            --card: #382822;
+            --border: #4d3a31;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(45, 27, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        nav {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 100px;
+            transition: background 0.25s, transform 0.2s !important;
+            box-shadow: 0 4px 20px rgba(224, 123, 84, 0.3);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: #f08c65 !important;
+            transform: scale(1.03);
+        }
+
+        .hero {
+            padding: 180px 24px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .hero-label {
+            background: var(--warm);
+            color: var(--teal);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--ink);
+            max-width: 900px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        .iot-grid-section {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .iot-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .iot-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            transition: transform 0.3s;
+        }
+
+        .iot-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .iot-card i {
+            font-size: 2.2rem;
+            color: var(--teal);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .iot-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .iot-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .visual-section {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .visual-content h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .visual-content p {
+            font-size: 1.1rem;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--warm);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .visual-box {
+            background: #241510;
+            border-radius: 40px;
+            height: 500px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-box::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at center, rgba(91, 164, 160, 0.1) 0%, transparent 60%);
+        }
+
+        .cta-section {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: var(--warm);
+            padding: 80px 40px;
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-box p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn-accent:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            padding: 80px 60px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            background: var(--bg);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-top: 20px;
+            max-width: 260px;
+        }
+
+        .footer-col h5 {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 24px;
+            color: var(--ink);
+        }
+
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--teal);
+        }
+
+        .footer-bottom {
+            padding: 32px 60px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        @media (max-width: 1024px) {
+            .iot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .visual-section {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+
+            .visual-box {
+                order: -1;
+            }
+
+            .feature-item {
+                text-align: left;
+            }
+
+            footer {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 18px 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .iot-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .iot-grid-section,
+            .visual-section,
+            .cta-section,
+            footer {
+                padding: 60px 24px;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="home.html" class="logo">
+            <div class="logo-dot"></div>
+            Nexora
+        </a>
+        <nav>
+            <a href="home.html#services">Dịch vụ</a>
+            <a href="home.html#process">Quy trình</a>
+            <a href="home.html#testimonials">Khách hàng</a>
+            <a href="home.html#contact" class="nav-cta">Liên hệ dự án →</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-label">Kết nối vạn vật</div>
+            <h1>Giải pháp <em>IoT</em><br>thông minh & toàn diện</h1>
+            <p>Chúng tôi giúp doanh nghiệp tối ưu hóa quy trình vận hành bằng cách kết nối các thiết bị vật lý với hệ
+                thống kỹ thuật số, mang lại dữ liệu thời gian thực chính xác nhất.</p>
+        </section>
+
+        <section class="iot-grid-section">
+            <div class="iot-grid">
+                <div class="iot-card">
+                    <i class="fa-solid fa-industry"></i>
+                    <h3>Smart Industry</h3>
+                    <p>Giám sát dây chuyền sản xuất, dự báo bảo trì thiết bị và tối ưu hóa năng lượng tiêu thụ trong nhà
+                        máy thông qua các cảm biến thông minh.</p>
+                </div>
+                <div class="iot-card">
+                    <i class="fa-solid fa-house-signal"></i>
+                    <h3>Smart Office</h3>
+                    <p>Hệ thống quản trị tòa nhà tự động, điều khiển ánh sáng, nhiệt độ và an ninh tập trung, giúp tiết
+                        kiệm chi phí và tăng hiệu suất làm việc.</p>
+                </div>
+                <div class="iot-card">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                    <h3>Supply Chain</h3>
+                    <p>Theo dõi vị trí và tình trạng hàng hóa thời gian thực trong quá trình vận chuyển, đảm bảo minh
+                        bạch và an toàn cho chuỗi cung ứng.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="visual-section">
+            <div class="visual-box">
+                <!-- Abstract IoT visual -->
+            </div>
+            <div class="visual-content">
+                <h2>Quản trị dữ liệu thời gian thực</h2>
+                <p>Hệ thống IoT của Nexora không chỉ dừng lại ở việc kết nối, chúng tôi tập trung vào việc xử lý dữ liệu
+                    ngay tại biên (Edge Computing) để mang lại phản hồi tích tắc.</p>
+
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="feature-text">
+                        <h4>Phần cứng tùy biến chuyên sâu</h4>
+                        <p>Thiết kế mạch và tích hợp cảm biến phù hợp với từng môi trường đặc thù của doanh nghiệp.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div class="feature-text">
+                        <h4>Dashboard trực quan</h4>
+                        <p>Theo dõi mọi thông số qua giao diện web và mobile với các biểu đồ phân tích sâu sắc.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-box">
+                <h2>Bắt đầu hành trình số hóa ngay hôm nay</h2>
+                <p>Nexora sẵn sàng tư vấn giải pháp IoT phù hợp nhất với quy mô và ngân sách của bạn.</p>
+                <a href="home.html#contact" class="btn-accent">Nhận tư vấn IoT</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-brand">
+            <a href="home.html" class="logo">
+                <div class="logo-dot"></div>
+                Nexora
+            </a>
+            <p>Đối tác công nghệ đáng tin cậy cho doanh nghiệp Việt muốn bứt phá trên thị trường số.</p>
+        </div>
+        <div class="footer-col">
+            <h5>Dịch vụ</h5>
+            <a href="web-development.html">Web Development</a>
+            <a href="app-development.html">App Development</a>
+            <a href="#">IoT Solutions</a>
+            <a href="#">AI Solutions</a>
+        </div>
+        <div class="footer-col">
+            <h5>Công ty</h5>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Portfolio</a>
+            <a href="#">Blog</a>
+            <a href="#">Tuyển dụng</a>
+        </div>
+        <div class="footer-col">
+            <h5>Liên hệ</h5>
+            <a href="mailto:hello@nexora.vn">hello@nexora.vn</a>
+            <a href="tel:+84901234567">090 123 4567</a>
+            <a href="#">LinkedIn &nbsp;·&nbsp; Facebook</a>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <span>© 2026 Nexora Technology. Bảo lưu mọi quyền.</span>
+        <span>Chính sách bảo mật &nbsp;·&nbsp; Điều khoản dịch vụ</span>
+    </div>
+</body>
+
+</html>

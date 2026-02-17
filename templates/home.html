@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA | Giải Pháp Số Cho Doanh Nghiệp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ─── TOKENS ─── */
+        :root {
+            --bg: #2d1b14;
+            --ink: #fdfaf7;
+            --warm: #3d2a22;
+            --cream: #2d1b14;
+            --accent: #e07b54;
+            --teal: #5ba4a0;
+            --gold: #d1b894;
+            --muted: #a69288;
+            --card: #382822;
+            --border: #4d3a31;
+        }
+
+        /* ─── RESET ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(45, 27, 20, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        nav {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--teal);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 10px 24px;
+            border-radius: 100px;
+            transition: background 0.25s, transform 0.2s !important;
+            box-shadow: 0 4px 20px rgba(224, 123, 84, 0.3);
+            border: 1px solid var(--border);
+        }
+
+        .nav-cta:hover {
+            background: var(--accent) !important;
+            transform: scale(1.03);
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 120px 60px 80px;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--warm);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--teal);
+            width: fit-content;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-badge span {
+            color: var(--ink);
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.8rem, 5.5vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--ink);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 480px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(224, 123, 84, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(224, 123, 84, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--ink);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: gap 0.2s;
+        }
+
+        .btn-secondary:hover {
+            gap: 14px;
+        }
+
+        .hero-trust {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-top: 8px;
+        }
+
+        .trust-avatars {
+            display: flex;
+        }
+
+        .trust-avatars span {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2.5px solid var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            margin-left: -10px;
+        }
+
+        .trust-avatars span:first-child {
+            margin-left: 0;
+        }
+
+        .trust-text {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .trust-text strong {
+            color: var(--ink);
+            display: block;
+        }
+
+        /* ─── HERO VISUAL ─── */
+        .hero-right {
+            position: relative;
+            height: 560px;
+        }
+
+        .hero-visual-bg {
+            position: absolute;
+            inset: 0;
+            background: #36251e;
+            border-radius: 32px;
+            overflow: hidden;
+        }
+
+        .hero-visual-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 70% 30%, rgba(224, 123, 84, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(91, 164, 160, 0.15) 0%, transparent 60%);
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: rgba(224, 123, 84, 0.25);
+            top: 10%;
+            right: 10%;
+        }
+
+        .shape-2 {
+            width: 150px;
+            height: 150px;
+            background: rgba(91, 164, 160, 0.25);
+            bottom: 20%;
+            left: 10%;
+        }
+
+        .float-card {
+            position: absolute;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            padding: 20px 24px;
+            animation: floatAnim 6s ease-in-out infinite;
+        }
+
+        @keyframes floatAnim {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .card-main {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px;
+            text-align: center;
+            animation: floatAnim 7s ease-in-out infinite;
+        }
+
+        .card-main .big-num {
+            font-family: 'Fraunces', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .card-main p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        .card-small-1 {
+            top: 18%;
+            left: 8%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation-delay: -2s;
+        }
+
+        .card-small-2 {
+            bottom: 18%;
+            right: 6%;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation-delay: -4s;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--warm);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .card-small-label {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .card-small-val {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .rating-stars {
+            color: #f5c842;
+            font-size: 0.85rem;
+        }
+
+        /* ─── RESULTS BAR ─── */
+        .results-bar {
+            background: #241510;
+            padding: 28px 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .result-item {
+            text-align: center;
+        }
+
+        .result-num {
+            font-family: 'Fraunces', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .result-label {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 4px;
+        }
+
+        .results-divider {
+            width: 1px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ─── SECTION TITLE ─── */
+        .section-title {
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 64px;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: var(--warm);
+            color: var(--teal);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-title h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .section-title h2 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .section-title p {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ─── SERVICES ─── */
+        .services-section {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card.featured {
+            background: var(--teal);
+            border-color: var(--teal);
+            grid-column: span 2;
+            flex-direction: row;
+            align-items: center;
+            gap: 32px;
+            box-shadow: 0 15px 45px rgba(91, 164, 160, 0.25);
+        }
+
+        .service-card.featured .service-icon {
+            width: 72px;
+            height: 72px;
+            font-size: 1.8rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .service-card.featured h3 {
+            color: #fff;
+            font-size: 1.8rem;
+        }
+
+        .service-card.featured p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .service-card.featured .service-tag {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .service-card.featured .service-link {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 100px;
+            width: fit-content;
+        }
+
+        .service-card.featured .service-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            gap: 12px;
+        }
+
+        .service-card.featured:hover {
+            box-shadow: 0 25px 70px rgba(91, 164, 160, 0.4);
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: var(--warm);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+
+        .service-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .service-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -0.5px;
+        }
+
+        .service-card p {
+            font-size: 0.92rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .service-tag {
+            display: inline-block;
+            background: var(--warm);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-top: auto;
+            transition: gap 0.2s;
+        }
+
+        .service-link:hover {
+            gap: 12px;
+        }
+
+        /* ─── PROCESS ─── */
+        .process-section {
+            padding: 100px 60px;
+            background: #281812;
+        }
+
+        .process-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: repeating-linear-gradient(to right,
+                    var(--border) 0, var(--border) 8px,
+                    transparent 8px, transparent 16px);
+        }
+
+        .step {
+            text-align: center;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .step-num {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Fraunces', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--ink);
+            position: relative;
+            z-index: 1;
+            transition: background 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        .step:hover .step-num {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .step h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .step p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonials-section {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial-card.highlighted {
+            background: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .testimonial-card.highlighted .quote {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonial-card.highlighted .client-name {
+            color: #fff;
+        }
+
+        .testimonial-card.highlighted .client-role {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .testimonial-card.highlighted .stars {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .testimonial-card.highlighted .quote-icon {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .quote-icon {
+            font-size: 1.5rem;
+            color: var(--teal);
+        }
+
+        .quote {
+            font-size: 0.95rem;
+            color: var(--ink);
+            line-height: 1.75;
+            font-style: italic;
+            flex: 1;
+        }
+
+        .stars {
+            color: #f5c842;
+            font-size: 0.82rem;
+            margin-bottom: 4px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .client-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #fff;
+            flex-shrink: 0;
+            border: 2px solid var(--border);
+        }
+
+        .client-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--ink);
+        }
+
+        .client-role {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* ─── CONTACT SECTION ─── */
+        .contact-section {
+            padding: 100px 60px;
+            background: #281812;
+        }
+
+        .contact-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .contact-info h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            color: var(--ink);
+        }
+
+        .contact-info h2 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .contact-info>p {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-item-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .contact-item-label {
+            font-size: 0.78rem;
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .contact-item-val {
+            font-size: 0.95rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* Form */
+        .contact-form-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 48px 40px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form-wrap h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .contact-form-wrap>p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--ink);
+            background: #241510;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            resize: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(232, 98, 42, 0.1);
+            background: #2d1b14;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #b5aaa3;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(224, 123, 84, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(224, 123, 84, 0.4);
+        }
+
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 14px;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 60px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 40px;
+            background: var(--bg);
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 14px;
+            display: inline-flex;
+        }
+
+        .footer-brand p {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.7;
+            max-width: 220px;
+        }
+
+        .footer-col h5 {
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--ink);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin-bottom: 10px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--ink);
+        }
+
+        .footer-bottom {
+            padding: 24px 60px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            color: var(--muted);
+            background: var(--bg);
+        }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            header {
+                padding: 18px 32px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 120px 40px 60px;
+            }
+
+            .hero-right {
+                height: 400px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .service-card.featured {
+                grid-column: span 2;
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact-inner {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            footer {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-bottom {
+                padding: 24px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 16px 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 24px 60px;
+                gap: 48px;
+                text-align: center;
+            }
+
+            .hero-left {
+                align-items: center;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero-desc {
+                margin: 0 auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-right {
+                height: 320px;
+                order: -1;
+            }
+
+            .card-main {
+                width: 200px;
+                padding: 16px;
+            }
+
+            .card-main .big-num {
+                font-size: 2.5rem;
+            }
+
+            .results-bar {
+                padding: 40px 24px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .result-item {
+                text-align: center;
+            }
+
+            .results-divider {
+                display: none;
+            }
+
+            .services-section {
+                padding: 70px 24px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card.featured {
+                grid-column: span 1;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 24px;
+                padding: 40px 24px;
+            }
+
+            .service-card.featured h3 {
+                font-size: 1.4rem;
+            }
+
+            .process-section {
+                padding: 70px 24px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .step {
+                padding: 0;
+            }
+
+            .testimonials-section {
+                padding: 70px 24px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                padding: 70px 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-wrap {
+                padding: 32px 24px;
+            }
+
+            footer {
+                grid-template-columns: 1fr;
+                padding: 48px 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                padding: 20px 24px;
+                text-align: center;
+            }
+        }
+
+        /* ─── CUSTOM SELECT (HOME) ─── */
+        .custom-select-wrapper {
+            position: relative;
+            user-select: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .custom-select {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .custom-select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .custom-select-trigger:hover {
+            border-color: var(--muted);
+        }
+
+        .custom-select.open .custom-select-trigger {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(91, 164, 160, 0.1);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .custom-select-trigger .arrow {
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid var(--muted);
+            border-bottom: 2px solid var(--muted);
+            transform: rotate(45deg);
+            margin-top: -4px;
+            transition: all 0.2s;
+        }
+
+        .custom-select.open .arrow {
+            transform: rotate(-135deg);
+            margin-top: 4px;
+            border-color: var(--teal);
+        }
+
+        .custom-options {
+            position: absolute;
+            display: block;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid var(--teal);
+            background: var(--card);
+            transition: all 0.2s;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-10px);
+            z-index: 100;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .custom-select.open .custom-options {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .custom-option {
+            padding: 12px 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--muted);
+            font-size: 0.9rem;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .custom-option:last-child {
+            border-bottom: none;
+        }
+
+        .custom-option:hover {
+            background: var(--warm);
+            color: var(--ink);
+        }
+
+        .custom-option.selected {
+            background: rgba(91, 164, 160, 0.1);
+            color: var(--teal);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════ HEADER ═══════════════ -->
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-dot"></div>
+            Nexora
+        </a>
+        <nav>
+            <a href="home.html" class="active">Trang chủ</a>
+            <a href="about-us.html">Về chúng tôi</a>
+            <a href="#services">Dịch vụ</a>
+            <a href="contact.html" class="nav-cta">Bắt đầu dự án</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ═══════════════ HERO ═══════════════ -->
+        <section class="hero">
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-circle-check" style="color:var(--sage)"></i>
+                    <span>200+ dự án thành công</span> — Đối tác tin cậy từ 2019
+                </div>
+
+                <h1>Giải pháp số<br>giúp doanh nghiệp<br>bạn <em>bứt phá.</em></h1>
+
+                <p class="hero-desc">
+                    Chúng tôi xây dựng website, ứng dụng và hệ thống AI giúp doanh nghiệp tăng trưởng nhanh hơn, tiết
+                    kiệm chi phí và tạo ấn tượng với khách hàng.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="contact.html" class="btn-primary">
+                        Bắt đầu dự án
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        Xem dịch vụ <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </div>
+
+                <div class="hero-trust">
+                    <div class="trust-avatars">
+                        <span style="background:#c8a96e;">HM</span>
+                        <span style="background:#6b8f71;">TL</span>
+                        <span style="background:#e8622a;">PN</span>
+                        <span style="background:#8a7060;">+</span>
+                    </div>
+                    <div class="trust-text">
+                        <strong>Hơn 180 doanh nghiệp tin tưởng</strong>
+                        Đánh giá trung bình 4.9 ⭐ từ khách hàng
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-visual-bg">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                </div>
+                <div class="float-card card-main">
+                    <div class="big-num">3×</div>
+                    <p>Tốc độ tăng trưởng trung bình sau khi triển khai giải pháp Nexora</p>
+                </div>
+                <div class="float-card card-small-1">
+                    <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div>
+                        <div class="card-small-label">Thời gian triển khai</div>
+                        <div class="card-small-val">Từ 2 tuần</div>
+                    </div>
+                </div>
+                <div class="float-card card-small-2">
+                    <div class="card-icon"><i class="fa-solid fa-star" style="color:var(--gold)"></i></div>
+                    <div>
+                        <div class="rating-stars">★★★★★</div>
+                        <div class="card-small-val">Khách hàng hài lòng</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ RESULTS BAR ═══════════════ -->
+        <div class="results-bar">
+            <div class="result-item">
+                <div class="result-num" id="count-projects">200+</div>
+                <div class="result-label">Dự án đã hoàn thành</div>
+            </div>
+            <div class="results-divider"></div>
+            <div class="result-item">
+                <div class="result-num" id="count-sat">98%</div>
+                <div class="result-label">Khách hàng hài lòng</div>
+            </div>
+            <div class="results-divider"></div>
+            <div class="result-item">
+                <div class="result-num">6 năm</div>
+                <div class="result-label">Kinh nghiệm thực chiến</div>
+            </div>
+            <div class="results-divider"></div>
+            <div class="result-item">
+                <div class="result-num">3×</div>
+                <div class="result-label">Tăng trưởng trung bình</div>
+            </div>
+        </div>
+
+        <!-- ═══════════════ SERVICES ═══════════════ -->
+        <section class="services-section reveal" id="services">
+            <div class="section-title">
+                <div class="section-label">Dịch vụ của chúng tôi</div>
+                <h2>Mọi thứ bạn cần để<br><em>thắng lợi</em> trên thị trường số</h2>
+                <p>Từ website đẹp đến hệ thống AI phức tạp — chúng tôi là đối tác toàn diện đồng hành cùng bạn.</p>
+            </div>
+
+            <div class="services-grid">
+
+                <!-- 1. Web Development — featured, span 2 cols -->
+                <div class="service-card featured">
+                    <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+                    <div class="service-content">
+                        <div class="service-tag">Phổ biến nhất</div>
+                        <h3>Web Development</h3>
+                        <p>Xây dựng website chuyên nghiệp, tốc độ cao, tối ưu SEO và trải nghiệm người dùng. Từ landing
+                            page đến hệ thống thương mại điện tử phức tạp.</p>
+                        <a href="web-development.html" class="service-link">Tư vấn ngay <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 2. App Development -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div class="service-content">
+                        <h3>App Development</h3>
+                        <p>Phát triển ứng dụng di động đa nền tảng iOS & Android với UI/UX mượt mà, hiệu năng cao và
+                            tích hợp đầy đủ tính năng doanh nghiệp.</p>
+                        <a href="app-development.html" class="service-link">Tìm hiểu thêm <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 3. IoT -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="service-content">
+                        <h3>IoT Solutions</h3>
+                        <p>Kết nối và điều khiển thiết bị thời gian thực. Giải pháp Internet of Things phù hợp cho nhà
+                            máy sản xuất, chuỗi cung ứng và smart office.</p>
+                        <a href="iot-solutions.html" class="service-link">Tìm hiểu thêm <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 4. Data Mining -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="service-content">
+                        <h3>Data Mining</h3>
+                        <p>Khai phá và phân tích dữ liệu thô, chuyển hóa thành thông tin chiến lược giúp bạn đưa ra
+                            quyết định kinh doanh chính xác và tự tin.</p>
+                        <a href="data-mining.html" class="service-link">Xem demo <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 5. Game Development -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-gamepad"></i></div>
+                    <div class="service-content">
+                        <h3>Game Development</h3>
+                        <p>Phát triển game 2D/3D, ứng dụng gamification và trải nghiệm tương tác độc đáo giúp thương
+                            hiệu bạn tạo dấu ấn khác biệt với người dùng.</p>
+                        <a href="game-development.html" class="service-link">Xem portfolio <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 6. AI -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
+                    <div class="service-content">
+                        <h3>AI Solutions</h3>
+                        <p>Tích hợp trí tuệ nhân tạo vào sản phẩm: chatbot 24/7, xử lý ngôn ngữ tự nhiên, machine
+                            learning — tự động hóa và thông minh hóa quy trình kinh doanh.</p>
+                        <a href="ai-solutions.html" class="service-link">Khám phá <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════ PROCESS ═══════════════ -->
+        <section class="process-section" id="process">
+            <div class="process-inner">
+                <div class="section-title reveal">
+                    <div class="section-label">Quy trình làm việc</div>
+                    <h2>Đơn giản, minh bạch,<br><em>hiệu quả</em></h2>
+                    <p>Bạn sẽ luôn biết dự án đang ở đâu và bước tiếp theo là gì.</p>
+                </div>
+                <div class="process-steps reveal">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <h4>Tư vấn & Phân tích</h4>
+                        <p>Lắng nghe nhu cầu, hiểu mục tiêu kinh doanh và đề xuất giải pháp phù hợp nhất.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <h4>Lên kế hoạch & Báo giá</h4>
+                        <p>Kế hoạch chi tiết, timeline rõ ràng và báo giá minh bạch — không phát sinh ẩn.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <h4>Phát triển & Cập nhật</h4>
+                        <p>Cập nhật tiến độ hàng tuần, bạn review và góp ý trực tiếp trong suốt quá trình.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">4</div>
+                        <h4 class="step-num">Ra mắt & Hỗ trợ</h4>
+                        <p>Triển khai, đào tạo sử dụng và bảo trì dài hạn. Chúng tôi không biến mất sau bàn giao.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+        <section class="testimonials-section reveal" id="testimonials">
+            <div class="section-title">
+                <div class="section-label">Khách hàng nói gì</div>
+                <h2>Không phải lời hứa —<br><em>kết quả thực tế</em></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"Website mới chạy nhanh hơn 5 lần, tỉ lệ chuyển đổi tăng 40% chỉ sau 3 tháng.
+                        Nexora không chỉ làm kỹ thuật mà còn thực sự hiểu kinh doanh."</p>
+                    <div class="client-info">
+                        <div class="client-avatar" style="background:var(--accent);">HM</div>
+                        <div>
+                            <div class="client-name">Hồng Minh</div>
+                            <div class="client-role">CEO, Thương hiệu thời trang MINA</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card highlighted">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"Chatbot AI họ tích hợp đã xử lý 70% câu hỏi khách hàng tự động. Team tiết kiệm
+                        được 30 giờ mỗi tuần và khách hàng hài lòng hơn hẳn."</p>
+                    <div class="client-info">
+                        <div class="client-avatar" style="background:rgba(255,255,255,0.3);">TL</div>
+                        <div>
+                            <div class="client-name" style="color:#fff;">Thanh Lâm</div>
+                            <div class="client-role">Giám đốc vận hành, EduFirst</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+                    <div class="stars">★★★★★</div>
+                    <p class="quote">"Điều tôi thích nhất là sự minh bạch. Tuần nào cũng có báo cáo. Cảm giác như họ là
+                        team nội bộ chứ không phải outsource."</p>
+                    <div class="client-info">
+                        <div class="client-avatar" style="background:var(--teal);">PN</div>
+                        <div>
+                            <div class="client-name">Phúc Nguyên</div>
+                            <div class="client-role">Founder, FreshMart Việt Nam</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ CONTACT — FIX: thêm form đúng nghĩa ═══════════════ -->
+        <section class="contact-section reveal" id="contact">
+            <div class="contact-inner">
+
+                <!-- Thông tin liên hệ -->
+                <div class="contact-info">
+                    <div>
+                        <div class="section-label" style="text-align:left;">Liên hệ với chúng tôi</div>
+                        <h2 style="margin-top:16px;">Hãy kể cho chúng tôi nghe về <em>dự án của bạn</em></h2>
+                    </div>
+                    <p>Đội ngũ chuyên gia phản hồi trong vòng 24 giờ. Buổi tư vấn đầu tiên hoàn toàn miễn phí, không
+                        ràng buộc.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div>
+                                <div class="contact-item-label">Địa chỉ</div>
+                                <div class="contact-item-val">123 Nguyễn Văn Linh, Quận 7, TP. Hồ Chí Minh</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div>
+                                <div class="contact-item-label">Email</div>
+                                <div class="contact-item-val">hello@nexora.vn</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div>
+                                <div class="contact-item-label">Điện thoại</div>
+                                <div class="contact-item-val">090 123 4567</div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fa-solid fa-clock"></i></div>
+                            <div>
+                                <div class="contact-item-label">Giờ làm việc</div>
+                                <div class="contact-item-val">Thứ 2 – Thứ 6 &nbsp;|&nbsp; 8:00 – 18:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form liên hệ -->
+                <div class="contact-form-wrap">
+                    <h3>Gửi yêu cầu tư vấn</h3>
+                    <p>Điền thông tin bên dưới, chúng tôi sẽ liên hệ lại sớm nhất.</p>
+
+                    <form action="#" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullname">Họ và tên *</label>
+                                <input type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn A" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="090 xxx xxxx" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="email@congty.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Dịch vụ quan tâm</label>
+                            <div class="custom-select-wrapper">
+                                <div class="custom-select">
+                                    <div class="custom-select-trigger">
+                                        <span>-- Chọn dịch vụ --</span>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <div class="custom-options">
+                                        <span class="custom-option selected" data-value="">-- Chọn dịch vụ --</span>
+                                        <span class="custom-option" data-value="web">Web Development</span>
+                                        <span class="custom-option" data-value="app">App Development</span>
+                                        <span class="custom-option" data-value="iot">IoT Solutions</span>
+                                        <span class="custom-option" data-value="data">Data Mining</span>
+                                        <span class="custom-option" data-value="game">Game Development</span>
+                                        <span class="custom-option" data-value="ai">AI Solutions</span>
+                                        <span class="custom-option" data-value="other">Khác</span>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="service" id="service-input">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mô tả yêu cầu / câu hỏi</label>
+                            <textarea id="message" name="message" rows="4"
+                                placeholder="Hãy chia sẻ thêm về dự án, mục tiêu hoặc câu hỏi của bạn..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-paper-plane"></i> Gửi yêu cầu
+                        </button>
+                        <p class="form-note"><i class="fa fa-lock" aria-hidden="true"></i> Thông tin của bạn được bảo
+                            mật
+                            tuyệt đối.</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer>
+        <div class="footer-brand">
+            <a href="#" class="logo">
+                <div class="logo-dot"></div>
+                Nexora
+            </a>
+            <p>Đối tác công nghệ đáng tin cậy cho doanh nghiệp Việt muốn bứt phá trên thị trường số.</p>
+        </div>
+        <div class="footer-col">
+            <h5>Dịch vụ</h5>
+            <a href="#services">Web Development</a>
+            <a href="#services">App Development</a>
+            <a href="#services">IoT Solutions</a>
+            <a href="#services">Data Mining</a>
+            <a href="#services">Game Development</a>
+            <a href="#services">AI Solutions</a>
+        </div>
+        <div class="footer-col">
+            <h5>Công ty</h5>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Portfolio</a>
+            <a href="contact.html">Liên hệ</a>
+            <a href="contact.html" class="nav-cta">Bắt đầu dự án</a>
+        </div>
+        <div class="footer-col">
+            <h5>Liên hệ</h5>
+            <a href="#">TP. Hồ Chí Minh</a>
+            <a href="mailto:hello@nexora.vn">hello@nexora.vn</a>
+            <a href="tel:+84901234567">090 123 4567</a>
+            <a href="#">LinkedIn &nbsp;·&nbsp; Facebook</a>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <span>© 2026 Nexora Technology. Bảo lưu mọi quyền.</span>
+        <span>Chính sách bảo mật &nbsp;·&nbsp; Điều khoản dịch vụ</span>
+    </div>
+
+    <!-- ═══════════════ SCRIPT ═══════════════ -->
+    <script>
+        /* Scroll reveal */
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(function (el) { revealObserver.observe(el); });
+
+        /* Card tilt */
+        document.querySelectorAll('.service-card, .testimonial-card').forEach(function (card) {
+            card.addEventListener('mousemove', function (e) {
+                var r = card.getBoundingClientRect();
+                var rx = ((e.clientY - r.top - r.height / 2) / r.height) * -5;
+                var ry = ((e.clientX - r.left - r.width / 2) / r.width) * 5;
+                card.style.transform = 'perspective(1000px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-6px)';
+            });
+            card.addEventListener('mouseleave', function () { card.style.transform = ''; });
+        });
+
+        /* Counter animation */
+        var counted = false;
+        var bar = document.querySelector('.results-bar');
+        var barObserver = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting && !counted) {
+                counted = true;
+                countUp(document.getElementById('count-projects'), 200, '+');
+                countUp(document.getElementById('count-sat'), 98, '%');
+            }
+        }, { threshold: 0.5 });
+        if (bar) barObserver.observe(bar);
+
+        function countUp(el, end, suffix) {
+            if (!el) return;
+            var n = 0, step = Math.ceil(end / 60);
+            var t = setInterval(function () {
+                n = Math.min(n + step, end);
+                el.textContent = n + suffix;
+                if (n >= end) clearInterval(t);
+            }, 20);
+        }
+
+        /* Custom Dropdown Handle */
+        document.querySelector('.custom-select-trigger').addEventListener('click', function () {
+            this.parentElement.classList.toggle('open');
+        });
+        document.querySelectorAll('.custom-option').forEach(option => {
+            option.addEventListener('click', function () {
+                if (!this.classList.contains('selected')) {
+                    const parent = this.closest('.custom-select');
+                    parent.querySelector('.custom-option.selected').classList.remove('selected');
+                    this.classList.add('selected');
+                    parent.querySelector('.custom-select-trigger span').textContent = this.textContent;
+                    document.getElementById('service-input').value = this.getAttribute('data-value');
+                    parent.classList.remove('open');
+                }
+            });
+        });
+        window.addEventListener('click', function (e) {
+            const select = document.querySelector('.custom-select');
+            if (select && !select.contains(e.target)) {
+                select.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+
+</html>
